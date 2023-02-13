@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-02-13T02:29:03.291Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" etag="VMxp0bC-IbdGTyhp40nx" version="20.8.20" type="github">
+<mxfile host="app.diagrams.net" modified="2023-02-13T02:30:12.826Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" etag="VVifE8itbx_xBrYK_gP0" version="20.8.20" type="github">
   <diagram name="Página-1" id="_aPg7-1qgv8ASUU3-PLF">
     <mxGraphModel dx="1393" dy="462" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -135,8 +135,8 @@
         <mxCell id="CIX9Yw4dkPsD926omPOh-39" value="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="666" y="380" width="10" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="CIX9Yw4dkPsD926omPOh-42" value="Legendas:&lt;br&gt;NN = NotNull&lt;br&gt;U = Unique" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="-180" y="30" width="95" height="30" as="geometry" />
+        <mxCell id="CIX9Yw4dkPsD926omPOh-42" value="&lt;b&gt;Legendas:&lt;br&gt;NN = NotNull&lt;br&gt;U = Unique&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-168" y="30" width="95" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
