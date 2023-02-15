@@ -1,0 +1,173 @@
+<mxfile host="app.diagrams.net" modified="2023-02-15T19:31:50.084Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" etag="WVWuIqe3-8ywGpByP133" version="20.8.20" type="github">
+  <diagram name="Página-1" id="faZqavo2saKHAUYqB46W">
+    <mxGraphModel dx="633" dy="569" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="caubpSiTxFr4B8Om-Vba-1" value="Pedro&lt;br&gt;(Administrador)" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;aspect=fixed;" parent="1" vertex="1">
+          <mxGeometry x="39" y="495" width="45" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="caubpSiTxFr4B8Om-Vba-2" value="" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+          <mxGeometry x="136" y="112" width="937" height="937" as="geometry" />
+        </mxCell>
+        <mxCell id="caubpSiTxFr4B8Om-Vba-7" value="UC001 - Registrar movimentação" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+          <mxGeometry x="183" y="179" width="110" height="73.06" as="geometry" />
+        </mxCell>
+        <mxCell id="caubpSiTxFr4B8Om-Vba-8" value="UC003 - Cadastrar veículo" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+          <mxGeometry x="545" y="130" width="110" height="73.06" as="geometry" />
+        </mxCell>
+        <mxCell id="caubpSiTxFr4B8Om-Vba-9" value="UC005 - Cadastrar condutor" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+          <mxGeometry x="545" y="230" width="110" height="73.06" as="geometry" />
+        </mxCell>
+        <mxCell id="caubpSiTxFr4B8Om-Vba-10" value="UC002 - Listar veículos" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+          <mxGeometry x="353" y="130" width="110" height="73.06" as="geometry" />
+        </mxCell>
+        <mxCell id="caubpSiTxFr4B8Om-Vba-11" value="UC004 - Listar condutores" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+          <mxGeometry x="353" y="230" width="110" height="73.06" as="geometry" />
+        </mxCell>
+        <mxCell id="ysMwKezHrKP1_6Tt89WK-1" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.047;entryY=0.743;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="caubpSiTxFr4B8Om-Vba-7">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="74" y="490" as="sourcePoint" />
+            <mxPoint x="149" y="259" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ysMwKezHrKP1_6Tt89WK-2" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;dashed=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry x="-0.3446" y="5" width="160" relative="1" as="geometry">
+            <mxPoint x="293" y="203" as="sourcePoint" />
+            <mxPoint x="358.4389709080257" y="182.36909177166183" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ysMwKezHrKP1_6Tt89WK-3" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;dashed=1;rounded=0;exitX=1;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="caubpSiTxFr4B8Om-Vba-7" target="caubpSiTxFr4B8Om-Vba-11">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="293" y="230" as="sourcePoint" />
+            <mxPoint x="453" y="230" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ysMwKezHrKP1_6Tt89WK-5" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="edgeStyle=none;html=1;startArrow=open;endArrow=none;startSize=12;verticalAlign=bottom;dashed=1;labelBackgroundColor=none;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="caubpSiTxFr4B8Om-Vba-10" target="caubpSiTxFr4B8Om-Vba-8">
+          <mxGeometry x="0.1707" width="160" relative="1" as="geometry">
+            <mxPoint x="476" y="166" as="sourcePoint" />
+            <mxPoint x="524" y="165.94" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ysMwKezHrKP1_6Tt89WK-6" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="edgeStyle=none;html=1;startArrow=open;endArrow=none;startSize=12;verticalAlign=bottom;dashed=1;labelBackgroundColor=none;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1">
+          <mxGeometry x="0.1707" width="160" relative="1" as="geometry">
+            <mxPoint x="463" y="265.94" as="sourcePoint" />
+            <mxPoint x="545" y="265.94" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ysMwKezHrKP1_6Tt89WK-7" value="UC006 - Listar movimentações" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="183" y="320" width="110" height="73.06" as="geometry" />
+        </mxCell>
+        <mxCell id="ysMwKezHrKP1_6Tt89WK-11" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.009;entryY=0.739;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="ysMwKezHrKP1_6Tt89WK-7">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="94" y="502" as="sourcePoint" />
+            <mxPoint x="176" y="357" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ysMwKezHrKP1_6Tt89WK-12" value="UC007 - Exibir configurações" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="183" y="414" width="110" height="73.06" as="geometry" />
+        </mxCell>
+        <mxCell id="ysMwKezHrKP1_6Tt89WK-13" value="UC008 - Editar configurações" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="383" y="414" width="110" height="73.06" as="geometry" />
+        </mxCell>
+        <mxCell id="ysMwKezHrKP1_6Tt89WK-14" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="edgeStyle=none;html=1;startArrow=open;endArrow=none;startSize=12;verticalAlign=bottom;dashed=1;labelBackgroundColor=none;rounded=0;" edge="1" parent="1">
+          <mxGeometry x="0.1139" width="160" relative="1" as="geometry">
+            <mxPoint x="294" y="455" as="sourcePoint" />
+            <mxPoint x="382" y="455" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ysMwKezHrKP1_6Tt89WK-16" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" target="ysMwKezHrKP1_6Tt89WK-12">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="92" y="534" as="sourcePoint" />
+            <mxPoint x="196" y="318" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ysMwKezHrKP1_6Tt89WK-18" value="UC009 - Listar veículos" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="183" y="587.06" width="110" height="73.06" as="geometry" />
+        </mxCell>
+        <mxCell id="ysMwKezHrKP1_6Tt89WK-19" value="UC010 - Cadastrar veículo" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="327" y="510" width="110" height="73.06" as="geometry" />
+        </mxCell>
+        <mxCell id="ysMwKezHrKP1_6Tt89WK-20" value="UC011 - Editar veículo" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="370" y="587.06" width="110" height="73.06" as="geometry" />
+        </mxCell>
+        <mxCell id="ysMwKezHrKP1_6Tt89WK-21" value="UC012 - Excluir veículo" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="327" y="663.1199999999999" width="110" height="73.06" as="geometry" />
+        </mxCell>
+        <mxCell id="ysMwKezHrKP1_6Tt89WK-22" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="edgeStyle=none;html=1;startArrow=open;endArrow=none;startSize=12;verticalAlign=bottom;dashed=1;labelBackgroundColor=none;rounded=0;entryX=0.045;entryY=0.754;entryDx=0;entryDy=0;exitX=1;exitY=0;exitDx=0;exitDy=0;entryPerimeter=0;" edge="1" parent="1" source="ysMwKezHrKP1_6Tt89WK-18" target="ysMwKezHrKP1_6Tt89WK-19">
+          <mxGeometry x="-0.2042" y="11" width="160" relative="1" as="geometry">
+            <mxPoint x="263" y="616.06" as="sourcePoint" />
+            <mxPoint x="423" y="616.06" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ysMwKezHrKP1_6Tt89WK-23" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="edgeStyle=none;html=1;startArrow=open;endArrow=none;startSize=12;verticalAlign=bottom;dashed=1;labelBackgroundColor=none;rounded=0;" edge="1" parent="1">
+          <mxGeometry x="0.1351" y="5" width="160" relative="1" as="geometry">
+            <mxPoint x="293" y="627.06" as="sourcePoint" />
+            <mxPoint x="367" y="627.06" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ysMwKezHrKP1_6Tt89WK-24" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="edgeStyle=none;html=1;startArrow=open;endArrow=none;startSize=12;verticalAlign=bottom;dashed=1;labelBackgroundColor=none;rounded=0;entryX=0.021;entryY=0.403;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="ysMwKezHrKP1_6Tt89WK-21">
+          <mxGeometry x="0.4918" y="16" width="160" relative="1" as="geometry">
+            <mxPoint x="276" y="653.06" as="sourcePoint" />
+            <mxPoint x="350" y="653.06" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ysMwKezHrKP1_6Tt89WK-25" value="UC013 - Listar condutores" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="183" y="853.06" width="110" height="73.06" as="geometry" />
+        </mxCell>
+        <mxCell id="ysMwKezHrKP1_6Tt89WK-26" value="UC014 - Cadastrar condutor" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="327" y="776" width="110" height="73.06" as="geometry" />
+        </mxCell>
+        <mxCell id="ysMwKezHrKP1_6Tt89WK-27" value="UC015 - Editar condutor" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="370" y="853.06" width="110" height="73.06" as="geometry" />
+        </mxCell>
+        <mxCell id="ysMwKezHrKP1_6Tt89WK-28" value="UC016 - Excluir condutor" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="327" y="929.1199999999999" width="110" height="73.06" as="geometry" />
+        </mxCell>
+        <mxCell id="ysMwKezHrKP1_6Tt89WK-29" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="edgeStyle=none;html=1;startArrow=open;endArrow=none;startSize=12;verticalAlign=bottom;dashed=1;labelBackgroundColor=none;rounded=0;entryX=0.045;entryY=0.754;entryDx=0;entryDy=0;exitX=1;exitY=0;exitDx=0;exitDy=0;entryPerimeter=0;" edge="1" parent="1" source="ysMwKezHrKP1_6Tt89WK-25" target="ysMwKezHrKP1_6Tt89WK-26">
+          <mxGeometry x="-0.2042" y="11" width="160" relative="1" as="geometry">
+            <mxPoint x="263" y="882.06" as="sourcePoint" />
+            <mxPoint x="423" y="882.06" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ysMwKezHrKP1_6Tt89WK-30" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="edgeStyle=none;html=1;startArrow=open;endArrow=none;startSize=12;verticalAlign=bottom;dashed=1;labelBackgroundColor=none;rounded=0;" edge="1" parent="1">
+          <mxGeometry x="0.1351" y="5" width="160" relative="1" as="geometry">
+            <mxPoint x="293" y="893.06" as="sourcePoint" />
+            <mxPoint x="367" y="893.06" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ysMwKezHrKP1_6Tt89WK-31" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="edgeStyle=none;html=1;startArrow=open;endArrow=none;startSize=12;verticalAlign=bottom;dashed=1;labelBackgroundColor=none;rounded=0;entryX=0.021;entryY=0.403;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="ysMwKezHrKP1_6Tt89WK-28">
+          <mxGeometry x="0.4918" y="16" width="160" relative="1" as="geometry">
+            <mxPoint x="276" y="919.06" as="sourcePoint" />
+            <mxPoint x="350" y="919.06" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ysMwKezHrKP1_6Tt89WK-32" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" target="ysMwKezHrKP1_6Tt89WK-25">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="90" y="628" as="sourcePoint" />
+            <mxPoint x="365" y="565" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ysMwKezHrKP1_6Tt89WK-33" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" target="ysMwKezHrKP1_6Tt89WK-18">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="104" y="588" as="sourcePoint" />
+            <mxPoint x="193" y="461" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ysMwKezHrKP1_6Tt89WK-34" value="Diagrama de casos de uso do estacionamento" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="136" y="89" width="256" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
