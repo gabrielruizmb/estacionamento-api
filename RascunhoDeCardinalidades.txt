@@ -1,0 +1,153 @@
+cadastro de alunos:
+
+
+@Entity
+@Table(name = "alunos", schema = "public")
+public class Aluno {
+	
+	@Id
+	@Getter
+	private Long id;
+
+	@Getter @Setter
+	@Column(name = "nome", nullable = false)
+	private String nome;
+
+	@Getter @Setter
+	@Column(name = "cpf", nullable = false, unique = true)
+	private String cpf;
+
+	@Getter @Setter
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "endereco_id", nullable = false)
+	private Endereco endereco;
+}
+
+
+@Entity
+@Table(name = "enderecos", schema = "public")
+public class Endereco {
+
+	@Id
+	@Getter
+	private Long id;
+
+	@Getter @Setter
+	@Column(name = "rua", nullable = false)
+	private String rua;
+
+	
+	@Getter @Setter
+	@Column(name = "numero", nullable = false)
+	private String numero;
+
+	
+	@Getter @Setter
+	@Column(name = "bairro", nullable = false)
+	private String bairro;
+
+	@Getter @Setter
+	@Column(name = "cep", nullable = false, lenght = 10)
+	private String cep;
+}
+
+@Entity
+@Table(name = "professores", schema = "public")
+public class Professor {
+
+	@Id
+	@Getter	
+	private Long id;
+	
+	@Getter @Setter
+	@Column
+	private String nome;
+	
+	@Getter @Setter
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = professor_aluno,
+	joinColumns = 
+		{@JoinColumn(name = professor_id, nullable = false)},
+	inverseJoinColumns = 
+		{@JoinColumn(name = aluno_id, nullable = false)})
+	private List<Aluno> alunos;
+}
+
+@Entity
+@Table(name = "contatos", schema = "public")
+public class Contato {
+
+	@Id
+	@Getter
+	private Long id;
+
+	@Getter @Setter
+	@Column(name = "tipo", nullable = false)
+	private String tipo;
+
+	@Getter @Setter
+	@Column(name = "valor", nullable = false)
+	private String valor;
+
+	@Getter @Setter
+	@ManyToOne
+	@JoinColumn(name = aluno_id, nullable = false)
+	private Aluno aluno
+}
+
+@Entity
+@Table(name = "cursos", schema = "public")
+public class Curso {
+
+	@Id
+	@Getter
+	private Long id;
+
+	@Getter @Setter
+	@Column(name = "nome", nullable = false, lenght = 30)
+	private String nome;
+
+	@Getter @Setter
+	@Column(name ="carga_horaria", nullable = false)
+	private String cargaHoraria;
+
+	@Getter @Setter
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "curso_aluno",
+	joinColumns = 
+		{@JoinColumn(name = "curso_id", nullable = false)},
+	inverseJoinColumns = 
+		{@JoinColumn(name = "aluno_id", nullable = false)})
+}
+
+
+estacionamento:
+
+public class Movimentacao {
+
+	@Getter @Setter
+	@ManyToOne
+	@JoinColumn(name = "veiculo_id", nullable = false, unique =true)
+	private Veiculo veiculo;
+	
+	@Getter @Setter
+	@ManyToOne
+	@JoinColumn(name = "condutor_id", nullable = false)
+	private Condutor condutor;
+}
+
+public class Veiculo {
+
+	@Getter @Setter
+	@ManyToOne
+	@JoinColumn(name = "modelo_id", nullable = false)
+	private Modelo modelo;	
+}
+
+public class Modelo {
+
+	@Getter @Setter
+	@ManyToOne
+	@JoinColumn(name = "marca_id", nullable = false)
+	private Marca marca;
+}
