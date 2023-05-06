@@ -2,19 +2,21 @@ package br.com.uniamerica.estacionamento.controller;
 
 import br.com.uniamerica.estacionamento.entity.Marca;
 import br.com.uniamerica.estacionamento.repository.MarcaRepository;
+import br.com.uniamerica.estacionamento.service.MarcaService;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping(value = "api/marca")
 public class MarcaController {
     final MarcaRepository marcaRepository;
+    final MarcaService marcaService;
 
-    public MarcaController(MarcaRepository marcaRepository) {
+    public MarcaController(MarcaRepository marcaRepository, MarcaService marcaService) {
         this.marcaRepository = marcaRepository;
+        this.marcaService = marcaService;
     }
 
     @GetMapping("/{id}")
@@ -26,7 +28,6 @@ public class MarcaController {
     public ResponseEntity<?> listaCompleta() {
         return ResponseEntity.ok(this.marcaRepository.findAll());
     }
-
     @GetMapping("/ativos")
     public ResponseEntity<?> listaAtivos() {
         return ResponseEntity.ok(this.marcaRepository.findByAtivo(true));
@@ -35,7 +36,7 @@ public class MarcaController {
     @PostMapping
     public ResponseEntity<?> cadastrar(@RequestBody final Marca marca) {
         try {
-            this.marcaRepository.save(marca);
+            marcaService.createMarca(marca);
             return ResponseEntity.ok("Marca cadastrada com sucesso");
         }
         catch (DataIntegrityViolationException error) {
