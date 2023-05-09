@@ -5,6 +5,9 @@ import br.com.uniamerica.estacionamento.repository.MarcaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class MarcaService {
 

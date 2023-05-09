@@ -62,4 +62,16 @@ public class MarcaController {
             return ResponseEntity.internalServerError().body("Error" + error.getMessage());
         }
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deletar(@PathVariable("id") final Long id) {
+        final Marca marcaBanco = this.marcaRepository.findById(id).orElse(null);
+
+        if (marcaBanco == null || !marcaBanco.getId().equals(id)) {
+            throw new RuntimeException("Registro não encontrado");
+        }
+
+        this.marcaRepository.deleteById(id);
+        return ResponseEntity.ok("Registro deletado com sucesso");
+    }
 }
