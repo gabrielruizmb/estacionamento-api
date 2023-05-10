@@ -5,9 +5,6 @@ import br.com.uniamerica.estacionamento.repository.MarcaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Service
 public class MarcaService {
 
@@ -17,7 +14,7 @@ public class MarcaService {
         this.marcaRepository = marcaRepository;
     }
 
-    public void createMarca(final Marca marca) {
+    public void nomeValidation(final Marca marca) {
 
         Assert.isTrue(marca.getNome().length() > 0,
                 "O nome da marca não pode ser nulo!");

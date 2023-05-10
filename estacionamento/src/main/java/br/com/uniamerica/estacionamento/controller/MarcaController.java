@@ -36,7 +36,7 @@ public class MarcaController {
     @PostMapping
     public ResponseEntity<?> cadastrar(@RequestBody final Marca marca) {
         try {
-            marcaService.createMarca(marca);
+            marcaService.nomeValidation(marca);
             return ResponseEntity.ok("Marca cadastrada com sucesso");
         }
         catch (DataIntegrityViolationException error) {
@@ -53,7 +53,7 @@ public class MarcaController {
             }
 
             this.marcaRepository.save(marca);
-            return ResponseEntity.ok("Registro de marca atualizado com sucesso");
+            return ResponseEntity.ok("Registro atualizado com sucesso");
         }
         catch (DataIntegrityViolationException error) {
             return ResponseEntity.internalServerError().body("Error" + error.getCause().getCause().getMessage());
