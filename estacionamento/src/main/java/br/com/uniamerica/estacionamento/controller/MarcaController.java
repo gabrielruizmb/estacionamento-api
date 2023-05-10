@@ -25,30 +25,30 @@ public class MarcaController {
         return marca == null ? ResponseEntity.badRequest().body("Nenhum valor encontrado") : ResponseEntity.ok(marca);
     }
     @GetMapping("/lista")
-    public ResponseEntity<?> listaCompleta() {
+    public ResponseEntity<?> findAll() {
         return ResponseEntity.ok(this.marcaRepository.findAll());
     }
     @GetMapping("/ativos")
-    public ResponseEntity<?> listaAtivos() {
+    public ResponseEntity<?> findByAtivo() {
         return ResponseEntity.ok(this.marcaRepository.findByAtivo(true));
     }
 
     @PostMapping
-    public ResponseEntity<?> cadastrar(@RequestBody final Marca marca) {
+    public ResponseEntity<?> registerMarca(@RequestBody final Marca marca) {
         try {
-            marcaService.nomeValidation(marca);
+            marcaService.marcaValidation(marca);
             return ResponseEntity.ok("Marca cadastrada com sucesso");
         }
-        catch (DataIntegrityViolationException error) {
-            return ResponseEntity.internalServerError().body("Error " + error.getCause().getCause().getMessage());
+        catch (Exception error) {
+            return ResponseEntity.internalServerError().body("Error " + error.getMessage());
         }
     }
 
     @PutMapping
-    public ResponseEntity<?> editar(@RequestParam("id") final Long id, @RequestBody final Marca marca) {
+    public ResponseEntity<?> editMarca(@RequestParam("id") final Long id, @RequestBody final Marca marca) {
         try {
-            final Marca marcaBanco = this.marcaRepository.findById(id).orElse(null);
-            if (marcaBanco == null || !marcaBanco.getId().equals(marca.getId())) {
+            final Marca databaseMarca = this.marcaRepository.findById(id).orElse(null);
+            if (databaseMarca == null || !databaseMarca.getId().equals(marca.getId())) {
                 throw new RuntimeException("Registro não encontrado");
             }
 
@@ -64,10 +64,10 @@ public class MarcaController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deletar(@PathVariable("id") final Long id) {
-        final Marca marcaBanco = this.marcaRepository.findById(id).orElse(null);
+    public ResponseEntity<?> deleteMarca(@PathVariable("id") final Long id) {
+        final Marca databaseMarca = this.marcaRepository.findById(id).orElse(null);
 
-        if (marcaBanco == null || !marcaBanco.getId().equals(id)) {
+        if (databaseMarca == null || !databaseMarca.getId().equals(id)) {
             throw new RuntimeException("Registro não encontrado");
         }
 
