@@ -25,4 +25,14 @@ public class MarcaService {
 
         this.marcaRepository.save(marca);
     }
+    @Transactional
+    public void marcaUpdateValidation(final Long id, Marca marca) {
+
+        final Marca databaseMarca = this.marcaRepository.findById(id).orElse(null);
+        if (databaseMarca == null || !databaseMarca.getId().equals(marca.getId())) {
+            throw new RuntimeException("Registro não encontrado");
+        }
+
+        marcaValidation(marca);
+    }
 }

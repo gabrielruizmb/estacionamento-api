@@ -26,18 +26,18 @@ public class ModeloController {
         return modelo == null ? ResponseEntity.badRequest().body("Nenhum valor encontrado") : ResponseEntity.ok(modelo);
     }
     @GetMapping("/lista")
-    public ResponseEntity<?> listaCompleta() {
+    public ResponseEntity<?> findAll() {
         return ResponseEntity.ok(this.modeloRepository.findAll());
     }
     @GetMapping("/ativos")
-    public ResponseEntity<?> listaAtivos() {
+    public ResponseEntity<?> findByAtivo() {
         return ResponseEntity.ok(this.modeloRepository.findByAtivo(true));
     }
 
     @PostMapping
     public ResponseEntity<?> cadastrar(@RequestBody final Modelo modelo) {
         try {
-            this.modeloService.nomeValidation(modelo);
+            this.modeloService.modeloValidation(modelo);
             return ResponseEntity.ok("Modelo cadastrada com sucesso");
         }
         catch (Exception error) {
@@ -48,12 +48,7 @@ public class ModeloController {
     @PutMapping
     public ResponseEntity<?> editar(@RequestParam("id") final Long id, @RequestBody final Modelo modelo) {
         try {
-            final Modelo modeloBanco = this.modeloRepository.findById(id).orElse(null);
-            if (modeloBanco == null || !modeloBanco.getId().equals(modelo.getId())) {
-                throw new RuntimeException("Registro não encontrado");
-            }
-
-            this.modeloRepository.save(modelo);
+            this.modeloService.modeloUpdateValidation(id, modelo);
             return ResponseEntity.ok("Registro de marca atualizado com sucesso");
         }
         catch (DataIntegrityViolationException error) {
@@ -66,9 +61,9 @@ public class ModeloController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deletar(@PathVariable("id") final Long id) {
-        final Modelo modeloBanco = this.modeloRepository.findById(id).orElse(null);
+        final Modelo databaseModelo = this.modeloRepository.findById(id).orElse(null);
 
-        if (modeloBanco == null || !modeloBanco.getId().equals(id)) {
+        if (databaseModelo== null || !databaseModelo.getId().equals(id)) {
             throw new RuntimeException("Registro não encontrado");
         }
 

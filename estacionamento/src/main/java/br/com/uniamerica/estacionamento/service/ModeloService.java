@@ -2,6 +2,7 @@ package br.com.uniamerica.estacionamento.service;
 
 import br.com.uniamerica.estacionamento.entity.Modelo;
 import br.com.uniamerica.estacionamento.repository.ModeloRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
@@ -13,14 +14,23 @@ public class ModeloService {
         this.modeloRepository = modeloRepository;
     }
 
-    public void nomeValidation(final Modelo modelo) {
+    @Transactional
+    public void modeloValidation(final Modelo modelo) {
         Assert.isTrue(modelo.getNome().length() > 0,
                 "O nome da marca não pode ser nulo!");
         Assert.isTrue(modelo.getNome().length() < 50,
                 "O nome da marca deve ter menos que 50 carácteres");
-        Assert.isTrue(!modelo.equals(null), "O campo de marca não pode ser nulo");
+        Assert.isTrue(modelo.getMarca() != null, "O campo de marca não pode ser nulo");
 
         this.modeloRepository.save(modelo);
+    }
+
+    public void modeloUpdateValidation(final Long id, final Modelo modelo) {
+        final Modelo databaseModelo = this.modeloRepository.findById(id).orElse(null);
+        if (databaseModelo == null || !databaseModelo.getId().equals(modelo.getId())) {
+            throw new RuntimeException("Registro não encontrado");
+        }
+        modeloValidation(modelo);
     }
 
 }

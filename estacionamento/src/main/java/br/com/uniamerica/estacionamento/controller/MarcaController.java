@@ -47,13 +47,7 @@ public class MarcaController {
     @PutMapping
     public ResponseEntity<?> editMarca(@RequestParam("id") final Long id, @RequestBody final Marca marca) {
         try {
-            final Marca databaseMarca = this.marcaRepository.findById(id).orElse(null);
-            if (databaseMarca == null || !databaseMarca.getId().equals(marca.getId())) {
-                throw new RuntimeException("Registro não encontrado");
-            }
-
-            this.marcaRepository.save(marca);
-            return ResponseEntity.ok("Registro atualizado com sucesso");
+            this.marcaService.marcaUpdateValidation(id, marca);
         }
         catch (DataIntegrityViolationException error) {
             return ResponseEntity.internalServerError().body("Error" + error.getCause().getCause().getMessage());
@@ -61,17 +55,24 @@ public class MarcaController {
         catch (RuntimeException error) {
             return ResponseEntity.internalServerError().body("Error" + error.getMessage());
         }
+        return ResponseEntity.ok("Registro atualizado com sucesso");
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteMarca(@PathVariable("id") final Long id) {
-        final Marca databaseMarca = this.marcaRepository.findById(id).orElse(null);
+        Marca databaseMarca = this.marcaRepository.findById(id).orElse(null);
 
         if (databaseMarca == null || !databaseMarca.getId().equals(id)) {
             throw new RuntimeException("Registro não encontrado");
         }
 
+        if (databaseMarca.isAtivo()) {
+            databaseMarca.setAtivo(false);
+            return ResponseEntity.ok("Registro desativado com sucesso");
+        }
+
         this.marcaRepository.deleteById(id);
         return ResponseEntity.ok("Registro deletado com sucesso");
+
     }
 }
