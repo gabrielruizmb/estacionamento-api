@@ -48,6 +48,7 @@ public class MarcaController {
     public ResponseEntity<?> editMarca(@RequestParam("id") final Long id, @RequestBody final Marca marca) {
         try {
             this.marcaService.marcaUpdateValidation(id, marca);
+            return ResponseEntity.ok("Registro de marca atualizado com sucesso");
         }
         catch (DataIntegrityViolationException error) {
             return ResponseEntity.internalServerError().body("Error" + error.getCause().getCause().getMessage());
@@ -55,7 +56,6 @@ public class MarcaController {
         catch (RuntimeException error) {
             return ResponseEntity.internalServerError().body("Error" + error.getMessage());
         }
-        return ResponseEntity.ok("Registro atualizado com sucesso");
     }
 
     @DeleteMapping("/{id}")

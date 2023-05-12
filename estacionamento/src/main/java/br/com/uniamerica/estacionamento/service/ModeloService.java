@@ -30,7 +30,14 @@ public class ModeloService {
         if (databaseModelo == null || !databaseModelo.getId().equals(modelo.getId())) {
             throw new RuntimeException("Registro não encontrado");
         }
-        modeloValidation(modelo);
+
+        Assert.isTrue(modelo.getNome().length() > 0,
+                "O nome da marca não pode ser nulo!");
+        Assert.isTrue(modelo.getNome().length() < 50,
+                "O nome da marca deve ter menos que 50 carácteres");
+        Assert.isTrue(modelo.getMarca() != null, "O campo de marca não pode ser nulo");
+
+        this.modeloRepository.save(modelo);
     }
 
 }

@@ -38,7 +38,7 @@ public class ModeloController {
     public ResponseEntity<?> cadastrar(@RequestBody final Modelo modelo) {
         try {
             this.modeloService.modeloValidation(modelo);
-            return ResponseEntity.ok("Modelo cadastrada com sucesso");
+            return ResponseEntity.ok("Modelo cadastrado com sucesso");
         }
         catch (Exception error) {
             return ResponseEntity.internalServerError().body("Error " + error.getMessage());
@@ -49,7 +49,7 @@ public class ModeloController {
     public ResponseEntity<?> editar(@RequestParam("id") final Long id, @RequestBody final Modelo modelo) {
         try {
             this.modeloService.modeloUpdateValidation(id, modelo);
-            return ResponseEntity.ok("Registro de marca atualizado com sucesso");
+            return ResponseEntity.ok("Registro de modelo atualizado com sucesso");
         }
         catch (DataIntegrityViolationException error) {
             return ResponseEntity.internalServerError().body("Error" + error.getCause().getCause().getMessage());
