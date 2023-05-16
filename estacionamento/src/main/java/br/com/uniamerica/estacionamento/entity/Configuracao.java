@@ -5,9 +5,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.envers.AuditTable;
+import org.hibernate.envers.Audited;
 
 import java.math.BigDecimal;
 import java.time.LocalTime;
+@Audited
+@AuditTable(value = "tb_configuracoes_audit", schema = "audit")
 @Entity
 @Table(name = "configuracoes", schema = "public")
 public class Configuracao extends AbstractEntity{

@@ -3,9 +3,12 @@ package br.com.uniamerica.estacionamento.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.envers.AuditTable;
+import org.hibernate.envers.Audited;
 
 import java.time.LocalTime;
-
+@Audited
+@AuditTable(value = "tb_condutores_audit", schema = "audit")
 @Entity
 @Table(name = "condutores", schema = "public")
 public class Condutor extends AbstractEntity{

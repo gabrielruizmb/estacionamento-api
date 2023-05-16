@@ -3,11 +3,15 @@ package br.com.uniamerica.estacionamento.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.envers.AuditTable;
+import org.hibernate.envers.Audited;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+@Audited
+@AuditTable(value = "tb_movimentacoes_audit", schema = "audit")
 @Entity
 @Table(name = "movimentacoes", schema = "public")
 public class Movimentacao extends AbstractEntity{
