@@ -25,41 +25,48 @@ public class MarcaController {
         return marca == null ? ResponseEntity.badRequest().body("Nenhum valor encontrado") : ResponseEntity.ok(marca);
     }
     @GetMapping("/lista")
-    public ResponseEntity<?> listaCompleta() {
+    public ResponseEntity<?> findAll() {
         return ResponseEntity.ok(this.marcaRepository.findAll());
     }
     @GetMapping("/ativos")
-    public ResponseEntity<?> listaAtivos() {
+    public ResponseEntity<?> findByAtivo() {
         return ResponseEntity.ok(this.marcaRepository.findByAtivo(true));
     }
 
     @PostMapping
-    public ResponseEntity<?> cadastrar(@RequestBody final Marca marca) {
+    public ResponseEntity<?> registerMarca(@RequestBody final Marca marca) {
         try {
-            marcaService.createMarca(marca);
+            marcaService.marcaValidation(marca);
             return ResponseEntity.ok("Marca cadastrada com sucesso");
         }
-        catch (DataIntegrityViolationException error) {
-            return ResponseEntity.internalServerError().body("Error " + error.getCause().getCause().getMessage());
+        catch (Exception error) {
+            return ResponseEntity.internalServerError().body("Error: " + error.getMessage());
         }
     }
 
     @PutMapping
-    public ResponseEntity<?> editar(@RequestParam("id") final Long id, @RequestBody final Marca marca) {
+    public ResponseEntity<?> editMarca(@RequestParam("id") final Long id, @RequestBody final Marca marca) {
         try {
-            final Marca marcaBanco = this.marcaRepository.findById(id).orElse(null);
-            if (marcaBanco == null || !marcaBanco.getId().equals(marca.getId())) {
-                throw new RuntimeException("Registro não encontrado");
-            }
-
-            this.marcaRepository.save(marca);
+            this.marcaService.marcaUpdateValidation(id, marca);
             return ResponseEntity.ok("Registro de marca atualizado com sucesso");
         }
         catch (DataIntegrityViolationException error) {
-            return ResponseEntity.internalServerError().body("Error" + error.getCause().getCause().getMessage());
+            return ResponseEntity.internalServerError().body("Error: " + error.getCause().getCause().getMessage());
+        }
+        catch (Exception error) {
+            return ResponseEntity.internalServerError().body("Error: " + error.getMessage());
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteMarca(@PathVariable("id") final Long id) {
+
+        try {
+            this.marcaService.deleteMarcaValidation(id);
+            return ResponseEntity.ok("Registro deletado com sucesso");
         }
         catch (RuntimeException error) {
-            return ResponseEntity.internalServerError().body("Error" + error.getMessage());
+            return ResponseEntity.internalServerError().body("Error: " + error.getMessage());
         }
     }
 }
