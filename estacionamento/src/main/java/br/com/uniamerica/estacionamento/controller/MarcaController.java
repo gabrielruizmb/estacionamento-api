@@ -53,7 +53,7 @@ public class MarcaController {
         catch (DataIntegrityViolationException error) {
             return ResponseEntity.internalServerError().body("Error: " + error.getCause().getCause().getMessage());
         }
-        catch (RuntimeException error) {
+        catch (Exception error) {
             return ResponseEntity.internalServerError().body("Error: " + error.getMessage());
         }
     }
