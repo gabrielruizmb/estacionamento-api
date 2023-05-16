@@ -21,4 +21,12 @@ public abstract class AbstractEntity {
     @Getter @Setter
     @Column(name = "ativo")
     private boolean ativo;
+
+    @PrePersist
+    public void dataCadastro() {
+        this.setCadastro(LocalDateTime.now());
+    }
+    @PreUpdate void dataUpdate() {
+        this.setAtualizar(LocalDateTime.now());
+    }
 }

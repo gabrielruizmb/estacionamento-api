@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalTime;
-
+@Audited
 @Entity
 @Table(name = "condutores", schema = "public")
 public class Condutor extends AbstractEntity{
