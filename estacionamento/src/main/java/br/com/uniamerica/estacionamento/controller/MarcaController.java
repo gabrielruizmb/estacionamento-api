@@ -40,7 +40,7 @@ public class MarcaController {
             return ResponseEntity.ok("Marca cadastrada com sucesso");
         }
         catch (Exception error) {
-            return ResponseEntity.internalServerError().body("Error " + error.getMessage());
+            return ResponseEntity.internalServerError().body("Error: " + error.getMessage());
         }
     }
 
@@ -51,28 +51,22 @@ public class MarcaController {
             return ResponseEntity.ok("Registro de marca atualizado com sucesso");
         }
         catch (DataIntegrityViolationException error) {
-            return ResponseEntity.internalServerError().body("Error" + error.getCause().getCause().getMessage());
+            return ResponseEntity.internalServerError().body("Error: " + error.getCause().getCause().getMessage());
         }
         catch (RuntimeException error) {
-            return ResponseEntity.internalServerError().body("Error" + error.getMessage());
+            return ResponseEntity.internalServerError().body("Error: " + error.getMessage());
         }
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteMarca(@PathVariable("id") final Long id) {
-        Marca databaseMarca = this.marcaRepository.findById(id).orElse(null);
 
-        if (databaseMarca == null || !databaseMarca.getId().equals(id)) {
-            throw new RuntimeException("Registro não encontrado");
+        try {
+            this.marcaService.deleteMarcaValidation(id);
+            return ResponseEntity.ok("Registro deletado com sucesso");
         }
-
-        if (databaseMarca.isAtivo()) {
-            databaseMarca.setAtivo(false);
-            return ResponseEntity.ok("Registro desativado com sucesso");
+        catch (RuntimeException error) {
+            return ResponseEntity.internalServerError().body("Error: " + error.getMessage());
         }
-
-        this.marcaRepository.deleteById(id);
-        return ResponseEntity.ok("Registro deletado com sucesso");
-
     }
 }

@@ -23,6 +23,10 @@ public class MarcaService {
         Assert.isTrue(marca.getNome().length() < 50,
                 "O nome da marca deve ter menos que 50 carácteres");
 
+        final Marca databaseMarca = this.marcaRepository.findByNome(marca.getNome());
+        Assert.isTrue(databaseMarca == null || !databaseMarca.getNome().equals(marca.getNome()),
+                "Esta marca já está registrada");
+
         this.marcaRepository.save(marca);
     }
     @Transactional
@@ -38,6 +42,21 @@ public class MarcaService {
         Assert.isTrue(marca.getNome().length() < 50,
                 "O nome da marca deve ter menos que 50 carácteres");
 
+        final Marca databaseMarcaUpdate = this.marcaRepository.findByNome(marca.getNome());
+        Assert.isTrue(databaseMarcaUpdate == null || !databaseMarca.getNome().equals(marca.getNome()),
+                "Esta marca já está registrada");
+
         this.marcaRepository.save(marca);
+    }
+
+    @Transactional
+    public void deleteMarcaValidation(final Long id) {
+        Marca databaseMarca = this.marcaRepository.findById(id).orElse(null);
+
+        if (databaseMarca == null || !databaseMarca.getId().equals(id)) {
+            throw new RuntimeException("Registro não encontrado");
+        }
+
+        this.marcaRepository.deleteById(id);
     }
 }
