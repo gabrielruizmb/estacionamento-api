@@ -3,6 +3,11 @@ package br.com.uniamerica.estacionamento.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.envers.AuditTable;
+import org.hibernate.envers.Audited;
+
+@Audited
+@AuditTable(value = "tb_veiculos_audit", schema = "audit")
 @Entity
 @Table(name = "veiculos", schema = "public")
 public class Veiculo extends AbstractEntity{
