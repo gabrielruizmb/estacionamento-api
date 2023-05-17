@@ -13,7 +13,7 @@ public abstract class AbstractEntity {
     @Column(name = "id", nullable = false, unique = true)
     private Long id;
     @Getter @Setter
-    @Column(name = "cadastro")
+    @Column(name = "cadastro", nullable = false)
     private LocalDateTime cadastro;
     @Getter @Setter
     @Column(name = "atualizar")
@@ -25,6 +25,7 @@ public abstract class AbstractEntity {
     @PrePersist
     public void dataCadastro() {
         this.setCadastro(LocalDateTime.now());
+        this.ativo = true;
     }
     @PreUpdate void dataUpdate() {
         this.setAtualizar(LocalDateTime.now());

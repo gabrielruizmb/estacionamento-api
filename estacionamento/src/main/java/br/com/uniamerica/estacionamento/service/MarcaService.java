@@ -46,6 +46,9 @@ public class MarcaService {
         Assert.isTrue(databaseMarcaUpdate == null || !databaseMarca.getNome().equals(marca.getNome()),
                 "Esta marca já está registrada");
 
+        // Define a data de cadastro do registro atualizado para a data de cadastro do registro do banco de dados.
+        marca.setCadastro(databaseMarca.getCadastro());
+
         this.marcaRepository.save(marca);
     }
 
