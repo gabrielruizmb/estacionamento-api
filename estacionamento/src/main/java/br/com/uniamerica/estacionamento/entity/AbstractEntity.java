@@ -1,6 +1,8 @@
 package br.com.uniamerica.estacionamento.entity;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,6 +14,7 @@ public abstract class AbstractEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false, unique = true)
     private Long id;
+    //@NotNull(message = "O campo cadastro deve ser informado")
     @Getter @Setter
     @Column(name = "cadastro", nullable = false)
     private LocalDateTime cadastro;
