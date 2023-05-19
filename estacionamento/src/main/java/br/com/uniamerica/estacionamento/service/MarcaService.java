@@ -18,10 +18,8 @@ public class MarcaService {
     @Transactional
     public void marcaValidation(final Marca marca) {
 
-        Assert.isTrue(marca.getNome().length() > 0,
-                "O nome da marca não pode ser nulo!");
-        Assert.isTrue(marca.getNome().length() < 50,
-                "O nome da marca deve ter menos que 50 carácteres");
+        Assert.isTrue(marca.getNome().length() > 0 && marca.getNome().length() < 50,
+                "O nome da marca deve conter entre 1 e 50 caractéres");
 
         final Marca databaseMarca = this.marcaRepository.findByNome(marca.getNome());
         Assert.isTrue(databaseMarca == null || !databaseMarca.getNome().equals(marca.getNome()),
@@ -37,12 +35,7 @@ public class MarcaService {
             throw new RuntimeException("Registro não encontrado");
         }
 
-        // Validações de update do atributo marca
-        Assert.isTrue(marca.getNome().length() > 0,
-                "O nome da marca não pode ser nulo!");
-        Assert.isTrue(marca.getNome().length() < 50,
-                "O nome da marca deve ter menos que 50 carácteres");
-
+        marca.setCadastro(databaseMarca.getCadastro());
 
         this.marcaRepository.save(marca);
     }
