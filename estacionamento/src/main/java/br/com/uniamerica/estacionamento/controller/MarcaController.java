@@ -5,6 +5,7 @@ import br.com.uniamerica.estacionamento.repository.MarcaRepository;
 import br.com.uniamerica.estacionamento.service.MarcaService;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -44,7 +45,7 @@ public class MarcaController {
     }
 
     @PutMapping
-    public ResponseEntity<?> editMarca(@RequestParam("id") final Long id, @RequestBody final Marca marca) {
+    public ResponseEntity<?> editMarca(@RequestParam("id") final Long id, @RequestBody @Validated final Marca marca) {
         try {
             this.marcaService.marcaUpdateValidation(id, marca);
             return ResponseEntity.ok("Registro de marca atualizado com sucesso");
