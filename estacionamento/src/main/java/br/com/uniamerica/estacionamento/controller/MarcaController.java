@@ -34,7 +34,7 @@ public class MarcaController {
     }
 
     @PostMapping
-    public ResponseEntity<?> registerMarca(@RequestBody final Marca marca) {
+    public ResponseEntity<?> registerMarca(@RequestBody @Validated final Marca marca) {
         try {
             marcaService.marcaValidation(marca);
             return ResponseEntity.ok("Marca cadastrada com sucesso");
