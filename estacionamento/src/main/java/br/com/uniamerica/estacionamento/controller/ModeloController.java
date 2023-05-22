@@ -5,6 +5,7 @@ import br.com.uniamerica.estacionamento.repository.ModeloRepository;
 import br.com.uniamerica.estacionamento.service.ModeloService;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -34,7 +35,7 @@ public class ModeloController {
     }
 
     @PostMapping
-    public ResponseEntity<?> cadastrar(@RequestBody final Modelo modelo) {
+    public ResponseEntity<?> cadastrar(@RequestBody @Validated final Modelo modelo) {
         try {
             this.modeloService.modeloValidation(modelo);
             return ResponseEntity.ok("Modelo cadastrado com sucesso");
@@ -45,7 +46,7 @@ public class ModeloController {
     }
 
     @PutMapping
-    public ResponseEntity<?> editar(@RequestParam("id") final Long id, @RequestBody final Modelo modelo) {
+    public ResponseEntity<?> editar(@RequestParam("id") final Long id, @RequestBody @Validated final Modelo modelo) {
         try {
             this.modeloService.modeloUpdateValidation(id, modelo);
             return ResponseEntity.ok("Registro de modelo atualizado com sucesso");
@@ -60,13 +61,12 @@ public class ModeloController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deletar(@PathVariable("id") final Long id) {
-        final Modelo databaseModelo = this.modeloRepository.findById(id).orElse(null);
-
-        if (databaseModelo== null || !databaseModelo.getId().equals(id)) {
-            throw new RuntimeException("Registro não encontrado");
+        try {
+            this.modeloService.deleteModeloValidation(id);
+            return ResponseEntity.ok("Registro deletado com sucesso");
         }
-
-        this.modeloRepository.deleteById(id);
-        return ResponseEntity.ok("Registro deletado com sucesso");
+        catch (RuntimeException error) {
+            return ResponseEntity.internalServerError().body("Error: " + error.getMessage());
+        }
     }
 }

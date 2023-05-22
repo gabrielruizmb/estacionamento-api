@@ -60,7 +60,6 @@ public class MarcaController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteMarca(@PathVariable("id") final Long id) {
-
         try {
             this.marcaService.deleteMarcaValidation(id);
             return ResponseEntity.ok("Registro deletado com sucesso");
