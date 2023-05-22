@@ -18,8 +18,9 @@ public class MarcaService {
     @Transactional
     public void marcaValidation(final Marca marca) {
 
+        // Valida se o nome da marca a ser inserida não existe nos registros
         final Marca databaseMarca = this.marcaRepository.findByNome(marca.getNome());
-        Assert.isTrue(databaseMarca == null || !databaseMarca.getNome().equals(marca.getNome()),
+        Assert.isTrue(databaseMarca == null,
                 "Esta marca já está registrada");
 
         this.marcaRepository.save(marca);
@@ -27,12 +28,18 @@ public class MarcaService {
     @Transactional
     public void marcaUpdateValidation(final Long id, final Marca marca) {
 
-        final Marca databaseMarca = this.marcaRepository.findById(id).orElse(null);
+        Marca databaseMarca = this.marcaRepository.findById(id).orElse(null);
         if (databaseMarca == null || !databaseMarca.getId().equals(marca.getId())) {
             throw new RuntimeException("Registro não encontrado");
         }
 
         marca.setCadastro(databaseMarca.getCadastro());
+
+        databaseMarca = this.marcaRepository.findByNome(marca.getNome());
+        if (databaseMarca != null) {
+            Assert.isTrue(marca.getId().equals(databaseMarca.getId()),
+                    "Esta marca já está nos registros");
+        }
 
         this.marcaRepository.save(marca);
     }
