@@ -5,10 +5,10 @@ import br.com.uniamerica.estacionamento.repository.MarcaRepository;
 import br.com.uniamerica.estacionamento.service.MarcaService;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 @RequestMapping(value = "api/marca")
 public class MarcaController {
     final MarcaRepository marcaRepository;
@@ -34,7 +34,7 @@ public class MarcaController {
     }
 
     @PostMapping
-    public ResponseEntity<?> registerMarca(@RequestBody final Marca marca) {
+    public ResponseEntity<?> registerMarca(@RequestBody @Validated final Marca marca) {
         try {
             marcaService.marcaValidation(marca);
             return ResponseEntity.ok("Marca cadastrada com sucesso");
@@ -45,7 +45,7 @@ public class MarcaController {
     }
 
     @PutMapping
-    public ResponseEntity<?> editMarca(@RequestParam("id") final Long id, @RequestBody final Marca marca) {
+    public ResponseEntity<?> editMarca(@RequestParam("id") final Long id, @RequestBody @Validated final Marca marca) {
         try {
             this.marcaService.marcaUpdateValidation(id, marca);
             return ResponseEntity.ok("Registro de marca atualizado com sucesso");
@@ -60,7 +60,6 @@ public class MarcaController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteMarca(@PathVariable("id") final Long id) {
-
         try {
             this.marcaService.deleteMarcaValidation(id);
             return ResponseEntity.ok("Registro deletado com sucesso");

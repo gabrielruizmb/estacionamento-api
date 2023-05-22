@@ -1,26 +1,23 @@
 package br.com.uniamerica.estacionamento.service;
 
 import br.com.uniamerica.estacionamento.entity.Modelo;
+import br.com.uniamerica.estacionamento.repository.MarcaRepository;
 import br.com.uniamerica.estacionamento.repository.ModeloRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
-import org.springframework.util.Assert;
 
 @Service
 public class ModeloService {
     final ModeloRepository modeloRepository;
+    final MarcaRepository marcaRepository;
 
-    public ModeloService(ModeloRepository modeloRepository) {
+    public ModeloService(ModeloRepository modeloRepository, MarcaRepository marcaRepository) {
         this.modeloRepository = modeloRepository;
+        this.marcaRepository = marcaRepository;
     }
 
     @Transactional
     public void modeloValidation(final Modelo modelo) {
-        Assert.isTrue(modelo.getNome().length() > 0,
-                "O nome da marca não pode ser nulo!");
-        Assert.isTrue(modelo.getNome().length() < 50,
-                "O nome da marca deve ter menos que 50 carácteres");
-        Assert.isTrue(modelo.getMarca() != null, "O campo de marca não pode ser nulo");
 
         this.modeloRepository.save(modelo);
     }
@@ -31,13 +28,16 @@ public class ModeloService {
             throw new RuntimeException("Registro não encontrado");
         }
 
-        Assert.isTrue(modelo.getNome().length() > 0,
-                "O nome da marca não pode ser nulo!");
-        Assert.isTrue(modelo.getNome().length() < 50,
-                "O nome da marca deve ter menos que 50 carácteres");
-        Assert.isTrue(modelo.getMarca() != null, "O campo de marca não pode ser nulo");
-
         this.modeloRepository.save(modelo);
     }
 
+    public void deleteModeloValidation(final Long id) {
+        Modelo databaseModelo = this.modeloRepository.findById(id).orElse(null);
+
+        if (databaseModelo == null || !databaseModelo.getId().equals(id)) {
+            throw new RuntimeException("Registro não encontrado");
+        }
+
+        this.modeloRepository.deleteById(id);
+    }
 }
