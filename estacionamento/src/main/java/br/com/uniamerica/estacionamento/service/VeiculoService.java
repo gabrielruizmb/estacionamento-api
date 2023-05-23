@@ -16,7 +16,7 @@ public class VeiculoService {
     }
 
     public void createVeiculoValidation(final Veiculo veiculo) {
-        // Valida se a placa a ser inserida já está registrada
+        // Valida se a placa a ser inserida não existe nos registros
         final Veiculo databaseVeiculo = this.veiculoRepository.findByPlaca(veiculo.getPlaca());
         Assert.isTrue(databaseVeiculo == null,
                 "Já existe um veículo com esta placa nos registros");
@@ -31,9 +31,17 @@ public class VeiculoService {
 
     public void updateVeiculoValidation(final Long id, final Veiculo veiculo) {
 
+        // Valida se o id do veiculo a ser atualizado existe nos registros
         Veiculo databaseVeiculo = this.veiculoRepository.findById(id).orElse(null);
         if (databaseVeiculo == null || !databaseVeiculo.getId().equals(veiculo.getId())) {
             throw new RuntimeException("Registro não encontrado");
+        }
+
+        // Valida se a placa a ser atualiza não existe nos registros
+        databaseVeiculo = this.veiculoRepository.findByPlaca(veiculo.getPlaca());
+        if (databaseVeiculo != null) {
+            Assert.isTrue(veiculo.getId().equals(databaseVeiculo.getId()),
+                    "Já existe um veículo com esta placa nos registros");
         }
 
         // Validação do ano do veículo
