@@ -2,8 +2,8 @@ package br.com.uniamerica.estacionamento.service;
 
 import br.com.uniamerica.estacionamento.entity.Marca;
 import br.com.uniamerica.estacionamento.repository.MarcaRepository;
-import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 @Service
@@ -15,7 +15,7 @@ public class MarcaService {
         this.marcaRepository = marcaRepository;
     }
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void marcaValidation(final Marca marca) {
 
         // Valida se o nome da marca a ser inserida não existe nos registros
@@ -25,7 +25,7 @@ public class MarcaService {
 
         this.marcaRepository.save(marca);
     }
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void marcaUpdateValidation(final Long id, final Marca marca) {
 
         Marca databaseMarca = this.marcaRepository.findById(id).orElse(null);
@@ -44,7 +44,7 @@ public class MarcaService {
         this.marcaRepository.save(marca);
     }
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void deleteMarcaValidation(final Long id) {
         Marca databaseMarca = this.marcaRepository.findById(id).orElse(null);
 

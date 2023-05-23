@@ -1,5 +1,6 @@
 package br.com.uniamerica.estacionamento.controller;
 
+import br.com.uniamerica.estacionamento.entity.Marca;
 import br.com.uniamerica.estacionamento.entity.Veiculo;
 import br.com.uniamerica.estacionamento.repository.VeiculoRepository;
 import br.com.uniamerica.estacionamento.service.VeiculoService;
@@ -59,4 +60,14 @@ public class VeiculoController {
         }
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteVeiculo(@PathVariable("id") final Long id) {
+        try {
+            this.veiculoService.deleteVeiculoValidation(id);
+            return ResponseEntity.ok("Registro deletado com sucesso");
+        }
+        catch (RuntimeException error) {
+            return ResponseEntity.internalServerError().body("Error: " + error.getMessage());
+        }
+    }
 }
