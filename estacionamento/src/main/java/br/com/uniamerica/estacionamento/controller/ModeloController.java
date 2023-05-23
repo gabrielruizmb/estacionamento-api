@@ -40,7 +40,7 @@ public class ModeloController {
             this.modeloService.modeloValidation(modelo);
             return ResponseEntity.ok("Modelo cadastrado com sucesso");
         }
-        catch (Exception error) {
+        catch (RuntimeException error) {
             return ResponseEntity.internalServerError().body("Error " + error.getMessage());
         }
     }

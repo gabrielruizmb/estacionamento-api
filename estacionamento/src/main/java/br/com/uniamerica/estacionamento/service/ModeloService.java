@@ -18,7 +18,6 @@ public class ModeloService {
 
     @Transactional
     public void modeloValidation(final Modelo modelo) {
-
         this.modeloRepository.save(modelo);
     }
 
