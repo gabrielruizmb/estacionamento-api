@@ -24,9 +24,9 @@ public class VeiculoService {
                 "Já existe um veículo com esta placa nos registros");
 
         // Validação do ano do veículo
-        final int validVeichleYear = Year.now().getValue() + 1;
-        Assert.isTrue(veiculo.getAno() > 1886 && veiculo.getAno() <= validVeichleYear,
-                "O ano do veiculo deve ser entre 1886 e " + validVeichleYear);
+        final int validVehicleYear = Year.now().getValue() + 1;
+        Assert.isTrue(veiculo.getAno() > 1886 && veiculo.getAno() <= validVehicleYear,
+                "O ano do veiculo deve ser entre 1886 e " + validVehicleYear);
 
         this.veiculoRepository.save(veiculo);
     }
@@ -47,9 +47,9 @@ public class VeiculoService {
         }
 
         // Validação do ano do veículo
-        final int validVeichleYear = Year.now().getValue() + 1;
-        Assert.isTrue(veiculo.getAno() > 1886 && veiculo.getAno() <= validVeichleYear,
-                "O ano do veiculo deve ser entre 1886 e " + validVeichleYear);
+        final int validVehicleYear = Year.now().getValue() + 1;
+        Assert.isTrue(veiculo.getAno() > 1886 && veiculo.getAno() <= validVehicleYear,
+                "O ano do veiculo deve ser entre 1886 e " + validVehicleYear);
         this.veiculoRepository.save(veiculo);
     }
     @Transactional(rollbackFor = Exception.class)
