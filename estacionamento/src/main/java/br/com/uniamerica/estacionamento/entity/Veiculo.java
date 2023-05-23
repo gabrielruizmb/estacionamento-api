@@ -18,7 +18,7 @@ import java.time.Year;
 public class Veiculo extends AbstractEntity{
     @Size(min = 4, max = 10, message = "A placa deve conter entre 4 e 10 caractéres")
     @Getter @Setter
-    @Column(name = "placa", nullable = false, length = 10)
+    @Column(name = "placa", nullable = false, unique = true, length = 10)
     private String placa;
 
     @Getter @Setter

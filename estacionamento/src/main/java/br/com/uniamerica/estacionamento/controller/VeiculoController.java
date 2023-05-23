@@ -3,6 +3,7 @@ package br.com.uniamerica.estacionamento.controller;
 import br.com.uniamerica.estacionamento.entity.Veiculo;
 import br.com.uniamerica.estacionamento.repository.VeiculoRepository;
 import br.com.uniamerica.estacionamento.service.VeiculoService;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -40,6 +41,20 @@ public class VeiculoController {
             return ResponseEntity.ok().body("Veiculo registrado com sucesso");
         }
         catch (Exception error) {
+            return ResponseEntity.internalServerError().body("Error: " + error.getMessage());
+        }
+    }
+
+    @PutMapping
+    public ResponseEntity<?> updateVeiculo(@RequestParam("id") final Long id, @RequestBody final Veiculo veiculo) {
+        try {
+            this.veiculoService.updateVeiculoValidation(id, veiculo);
+            return ResponseEntity.ok("Registro atualizado com sucesso");
+        }
+        catch (DataIntegrityViolationException error) {
+            return ResponseEntity.internalServerError().body("Error: " + error.getCause().getCause().getMessage());
+        }
+        catch (RuntimeException error) {
             return ResponseEntity.internalServerError().body("Error: " + error.getMessage());
         }
     }
