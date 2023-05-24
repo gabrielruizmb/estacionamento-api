@@ -16,7 +16,7 @@ public class CondutorService {
 
     @Transactional(rollbackFor = Exception.class)
     public void createCondutorValidation(final Condutor condutor) {
-
+        // Valida se o CPF não existe nos registros
         Condutor databaseCondutor = this.condutorRepository.findByCpf(condutor.getCpf());
         Assert.isTrue(databaseCondutor == null,
                 "Já existe um condutor com este CPF nos registros");
@@ -26,11 +26,12 @@ public class CondutorService {
 
     @Transactional(rollbackFor = Exception.class)
     public void updateCondutorValidation(final Long id, final Condutor condutor) {
-
+        // Valida se o condutor existe nos registros
         Condutor databaseCondutor = this.condutorRepository.findById(id).orElse(null);
         Assert.isTrue(databaseCondutor != null,
                 "Registro não encontrado");
 
+        // Valida se o CPF não existe nos registros
         databaseCondutor = this.condutorRepository.findByCpf(condutor.getCpf());
         if (databaseCondutor != null) {
             Assert.isTrue(condutor.getId().equals(databaseCondutor.getId()),
@@ -42,7 +43,7 @@ public class CondutorService {
 
     @Transactional(rollbackFor = Exception.class)
     public void deleteCondutorValidation(final Long id) {
-
+        // Valida se o condutor existe nos registros
         Condutor databaseCondutor = this.condutorRepository.findById(id).orElse(null);
         Assert.isTrue(databaseCondutor != null,
                 "Registro não encontrado");
