@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.envers.AuditTable;
 import org.hibernate.envers.Audited;
+import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalTime;
 @Audited
@@ -16,6 +17,7 @@ public class Condutor extends AbstractEntity{
     @Column(name = "nome", nullable = false, length = 50)
     private String nome;
 
+    @CPF
     @Getter @Setter
     @Column(name = "cpf", nullable = false, unique = true, length = 15)
     private String cpf;

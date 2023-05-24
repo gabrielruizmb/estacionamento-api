@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface CondutorRepository extends JpaRepository<Condutor, Long> {
     public List<Condutor> findByAtivo(@Param("ativo") final boolean ativo);
+    public Condutor findByCpf(String cpf);
 }

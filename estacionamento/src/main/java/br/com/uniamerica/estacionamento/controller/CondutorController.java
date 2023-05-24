@@ -5,6 +5,7 @@ import br.com.uniamerica.estacionamento.repository.CondutorRepository;
 import br.com.uniamerica.estacionamento.service.CondutorService;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -37,7 +38,7 @@ public class CondutorController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createCondutor(@RequestBody final Condutor condutor) {
+    public ResponseEntity<?> createCondutor(@RequestBody @Validated final Condutor condutor) {
         try {
             this.condutorService.createCondutorValidation(condutor);
             return ResponseEntity.ok("Condutor registrado com sucesso");
@@ -48,7 +49,7 @@ public class CondutorController {
     }
 
     @PutMapping
-    public ResponseEntity<?> updateCondutor(@RequestParam("id") final Long id, @RequestBody final Condutor condutor) {
+    public ResponseEntity<?> updateCondutor(@RequestParam("id") final Long id, @RequestBody @Validated final Condutor condutor) {
         try {
             this.condutorService.updateCondutorValidation(id, condutor);
             return ResponseEntity.ok("Registro de condutor atualizado com sucesso");
