@@ -5,6 +5,7 @@ import br.com.uniamerica.estacionamento.repository.MarcaRepository;
 import br.com.uniamerica.estacionamento.repository.ModeloRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 @Service
 public class ModeloService {
@@ -17,13 +18,22 @@ public class ModeloService {
     }
     @Transactional(rollbackFor = Exception.class)
     public void modeloValidation(final Modelo modelo) {
+        final Modelo databaseModelo = this.modeloRepository.findByNome(modelo.getNome());
+        Assert.isTrue(databaseModelo == null, "Este modelo já está registrado");
+
         this.modeloRepository.save(modelo);
     }
     @Transactional(rollbackFor = Exception.class)
     public void modeloUpdateValidation(final Long id, final Modelo modelo) {
-        final Modelo databaseModelo = this.modeloRepository.findById(id).orElse(null);
+        Modelo databaseModelo = this.modeloRepository.findById(id).orElse(null);
         if (databaseModelo == null || !databaseModelo.getId().equals(modelo.getId())) {
             throw new RuntimeException("Registro não encontrado");
+        }
+
+        databaseModelo = this.modeloRepository.findByNome(modelo.getNome());
+        if (databaseModelo != null) {
+            Assert.isTrue(modelo.getId().equals(databaseModelo.getId()),
+                    "Este modelo já está registrado");
         }
 
         this.modeloRepository.save(modelo);

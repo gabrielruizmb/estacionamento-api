@@ -41,7 +41,7 @@ public class ModeloController {
             return ResponseEntity.ok("Modelo cadastrado com sucesso");
         }
         catch (RuntimeException error) {
-            return ResponseEntity.internalServerError().body("Error " + error.getMessage());
+            return ResponseEntity.internalServerError().body("Error: " + error.getMessage());
         }
     }
 
@@ -52,10 +52,10 @@ public class ModeloController {
             return ResponseEntity.ok("Registro de modelo atualizado com sucesso");
         }
         catch (DataIntegrityViolationException error) {
-            return ResponseEntity.internalServerError().body("Error" + error.getCause().getCause().getMessage());
+            return ResponseEntity.internalServerError().body("Error: " + error.getCause().getCause().getMessage());
         }
         catch (RuntimeException error) {
-            return ResponseEntity.internalServerError().body("Error" + error.getMessage());
+            return ResponseEntity.internalServerError().body("Error: " + error.getMessage());
         }
     }
 

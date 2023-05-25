@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface ModeloRepository extends JpaRepository<Modelo, Long> {
     public List<Modelo> findByAtivo(@Param("ativo") final boolean ativo);
+    public Modelo findByNome(String nome);
 }
