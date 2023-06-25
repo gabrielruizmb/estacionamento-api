@@ -20,7 +20,7 @@ public abstract class AbstractEntity {
     private LocalDateTime cadastro;
     @Getter @Setter
     @Column(name = "atualizar")
-    private LocalDateTime atualizar;
+    private LocalDateTime atualizado;
     @Getter @Setter
     @Column(name = "ativo")
     private boolean ativo;
@@ -31,6 +31,6 @@ public abstract class AbstractEntity {
         this.ativo = true;
     }
     @PreUpdate void dataUpdate() {
-        this.setAtualizar(LocalDateTime.now());
+        this.setAtualizado(LocalDateTime.now());
     }
 }
