@@ -14,7 +14,7 @@ public abstract class AbstractEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false, unique = true)
     private Long id;
-    @NotNull(message = "O campo cadastro não pode ser nulo")
+    //@NotNull(message = "O campo cadastro não pode ser nulo")
     @Getter @Setter
     @Column(name = "cadastro", nullable = false)
     private LocalDateTime cadastro;
