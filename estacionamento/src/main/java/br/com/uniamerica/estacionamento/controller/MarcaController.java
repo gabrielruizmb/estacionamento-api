@@ -44,8 +44,8 @@ public class MarcaController {
         }
     }
 
-    @PutMapping
-    public ResponseEntity<?> editMarca(@RequestParam("id") final Long id, @RequestBody @Validated final Marca marca) {
+    @PutMapping("/{id}")
+    public ResponseEntity<?> editMarca(@PathVariable("id") final Long id, @RequestBody @Validated final Marca marca) {
         try {
             this.marcaService.marcaUpdateValidation(id, marca);
             return ResponseEntity.ok("Registro de marca atualizado com sucesso");
